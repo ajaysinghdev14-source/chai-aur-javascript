@@ -96,6 +96,20 @@
       const todoInputRef = document.getElementById("todoInput");
       const todoContainerRef = document.getElementById("todoContainer");
 
+      (async () => {
+        const response = fetch("https://api.freeapi.app/api/v1/public/quotes", {
+          method: "GET",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            for (const obj of data.data.data) {
+              const li = document.createElement("li");
+              li.innerText = obj.content;
+              todoContainerRef.appendChild(li);
+            }
+          });
+      })();
+
       createButtonRef.addEventListener("click", function () {
         const value = todoInputRef.value;
         console.log(value);
