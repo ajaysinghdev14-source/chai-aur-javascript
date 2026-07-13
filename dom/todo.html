@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: #e2e8f0;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+
+      body > div {
+        width: min(100%, 560px);
+      }
+
+      body > div:first-of-type {
+        display: flex;
+        gap: 10px;
+      }
+
+      input {
+        flex: 1;
+        padding: 12px 14px;
+        border: 1px solid #334155;
+        border-radius: 10px;
+        background: #020617;
+        color: #f8fafc;
+        outline: none;
+      }
+
+      button {
+        padding: 12px 14px;
+        border: none;
+        border-radius: 10px;
+        background: #38bdf8;
+        color: #082f49;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      li {
+        padding: 12px 14px;
+        border: 1px solid #334155;
+        border-radius: 10px;
+        background: #111827;
+        color: #e2e8f0;
+        cursor: pointer;
+      }
+
+      li:hover {
+        background: #1f2937;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input id="todoInput" type="text" placeholder="Enter your task here: " />
+      <button id="create-Button">Create</button>
+    </div>
+
+    <div>
+      <ul id="todoContainer"></ul>
+    </div>
+    <script>
+      const createButtonRef = document.getElementById("create-Button");
+      const todoInputRef = document.getElementById("todoInput");
+      const todoContainerRef = document.getElementById("todoContainer");
+
+      createButtonRef.addEventListener("click", function () {
+        const value = todoInputRef.value;
+        console.log(value);
+
+        const li = document.createElement("li"); // <li></li>
+        li.innerText = value; // <li>{value}</li>
+        li.addEventListener("click", function () {
+          li.remove();
+        });
+
+        todoContainerRef.appendChild(li);
+
+        todoInputRef.value = "";
+      });
+    </script>
+  </body>
+</html>
