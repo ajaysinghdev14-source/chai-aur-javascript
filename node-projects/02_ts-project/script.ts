@@ -41,6 +41,13 @@ class InMemoryDB {
     this._db.set(id, { ...updateData, id });
     return true;
   }
+
+  public getUserById(id: UserID): User {
+    if (!this._db.has(id)) {
+      throw new Error(`User with ID ${id} does not exits`);
+    }
+    return this._db.get(id)!;
+  }
 }
 
 const myDb = new InMemoryDB();
